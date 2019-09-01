@@ -4,7 +4,7 @@ const app = express();
 
 app.use('/api/posts', (req, res, next) => {
   const posts = [
-    { id: "asdad", title: "1 server post", content: "from server" },
+    { id: "asdad", title: "1 server post", content: "from server 1" },
     { id: "qwdqd", title: "2 server post", content: "from server -2" },
     { id: "ewqeqwe", title: "3 server post", content: "from server -3" },
     { id: "ghsrht", title: "4 server post", content: "from server -4" },
