@@ -44,4 +44,16 @@ export class PostsService {
       }
     );
   }
+
+
+  deletePost(id: string) {
+    this.http.delete("http://localhost:3000/api/posts/" + id).subscribe(
+      (response) => {
+        // console.log("deleted!");
+        // filter remain the object which is true
+        const updatedPosts = this.posts.filter((post) => post.id !== id);
+        this.posts = updatedPosts;
+      }
+    )
+  }
 }

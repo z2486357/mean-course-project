@@ -24,6 +24,7 @@ mongoose.connect("mongodb+srv://mongouser:leXhc3AF3adBpEtJ@cluster0-iihgu.mongod
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended:false})); // no use right now
 
+// enable the communication between localhost:4200 and localhost:3000
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -54,6 +55,14 @@ app.get("/api/posts", (req, res, next) => {
     });
   });
 
+});
+
+app.delete("/api/posts/:id", (req, res, next) => {
+  //console.log(req.params.id);
+  Post.deleteOne({_id:req.params.id}).then((result)=>{
+    console.log(result);
+  })
+  res.status(200).json({message:"Post deleted!"});
 });
 
 module.exports = app;
