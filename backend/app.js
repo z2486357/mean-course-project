@@ -44,8 +44,6 @@ app.post("/api/posts", (req, res, next) => {
   });
 });
 
-
-
 app.get("/api/posts", (req, res, next) => {
   Post.find().then((documents)=>{
     //console.log(documents);
