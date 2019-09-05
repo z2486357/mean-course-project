@@ -37,9 +37,10 @@ export class PostsService {
       title: title,
       content: content,
     };
-    this.http.post<{ message: string }>('http://localhost:3000/api/posts', post).subscribe(
+    this.http.post<{ message: string, postId: string }>('http://localhost:3000/api/posts', post).subscribe(
       (responseData) => {
         console.log(responseData.message);
+        post.id = responseData.postId;
         this.posts.push(post);
       }
     );
@@ -51,6 +52,7 @@ export class PostsService {
       (response) => {
         // console.log("deleted!");
         // filter remain the object which is true
+        // console.log(id);
         const updatedPosts = this.posts.filter((post) => post.id !== id);
         this.posts = updatedPosts;
       }
