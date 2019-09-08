@@ -11,6 +11,7 @@ import { PostsService } from '../posts.service';
 export class PostCreateComponent implements OnInit {
   enteredTitle = '';
   enteredContent = '';
+  
   @Output() addPost = new EventEmitter<Post>();
 
   constructor(private postService: PostsService) { }
