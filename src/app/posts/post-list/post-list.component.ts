@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Post } from '../post.model';
 import { PostsService } from '../posts.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post-list',
@@ -14,7 +15,9 @@ export class PostListComponent implements OnInit {
   //   {title: "3 Post", content: "This is the 3 post's content"},
   // ];
   get posts() { return this.postService.getPosts(); }
-  constructor(private postService: PostsService) { }
+  constructor(private postService: PostsService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.postService.getPostsFromServer();
@@ -22,5 +25,9 @@ export class PostListComponent implements OnInit {
 
   delete(id: string) {
     this.postService.deletePost(id);
+  }
+
+  edit(id: string) {
+    this.router.navigate(['edit/' + id]);
   }
 }
