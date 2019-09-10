@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Post } from '../post.model';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostsService } from '../posts.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
@@ -16,6 +16,7 @@ export class PostCreateComponent implements OnInit {
   private id: string;
   private post: Post;
   isLoading = false;
+  form: FormGroup;
 
   @Output() addPost = new EventEmitter<Post>();
 
@@ -24,15 +25,26 @@ export class PostCreateComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      'title': new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
+      'content': new FormControl(null, { validators: [Validators.required] })
+    });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('id')) {
         this.isCreate = false;
         this.id = paramMap.get('id');
         this.isLoading = true;
         this.postService.getPost(this.id).subscribe((post) => {
-          this.enteredTitle = post.title;
-          this.enteredContent = post.content;
+          this.post = {
+            id: post._id,
+            title: post.title,
+            content: post.content
+          }
           this.isLoading = false;
+          this.form.setValue({
+            'title': this.post.title,
+            'content': this.post.content
+          })
         });
       } else {
         this.isCreate = true;
@@ -41,18 +53,18 @@ export class PostCreateComponent implements OnInit {
     });
   }
 
-  onSavePost(postForm: NgForm) {
-    if (postForm.invalid) {
+  onSavePost() {
+    if (this.form.invalid) {
       return;
     }
     this.isLoading = true;
     if (this.isCreate) {
       // this.postService.addPost(this.enteredTitle, this.enteredContent);
-      this.postService.addPost(postForm.value.title, postForm.value.content);
+      this.postService.addPost(this.form.value.title, this.form.value.content);
     } else {
-      this.postService.updatePost(this.id, postForm.value.title, postForm.value.content);
+      this.postService.updatePost(this.id, this.form.value.title, this.form.value.content);
     }
-    postForm.resetForm();
+    this.form.reset();
   }
 
 }

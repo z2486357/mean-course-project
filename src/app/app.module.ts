@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
   MatInputModule, MatCardModule, MatButtonModule,
   MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule
@@ -24,7 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     AppRoutingModule,
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatCardModule,
