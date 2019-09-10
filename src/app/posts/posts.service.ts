@@ -2,12 +2,14 @@ import { Post } from './post.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {
   private posts: Post[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private router: Router) { }
 
   getPosts() {
     return [...this.posts]; // copy
@@ -46,6 +48,7 @@ export class PostsService {
         console.log(responseData.message);
         post.id = responseData.postId;
         this.posts.push(post);
+        this.router.navigate(['/']);
       }
     );
   }
@@ -63,6 +66,7 @@ export class PostsService {
         const oldPostIndex = updatedPosts.findIndex((post) => post.id === id);
         updatedPosts[oldPostIndex] = post;
         this.posts = updatedPosts;
+        this.router.navigate(['/']);
       }
     )
 

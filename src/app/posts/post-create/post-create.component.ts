@@ -15,21 +15,24 @@ export class PostCreateComponent implements OnInit {
   private isCreate = true;
   private id: string;
   private post: Post;
+  isLoading = false;
 
   @Output() addPost = new EventEmitter<Post>();
 
   constructor(private postService: PostsService,
     public route: ActivatedRoute,
-    private router:Router) { }
+    private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('id')) {
         this.isCreate = false;
         this.id = paramMap.get('id');
+        this.isLoading = true;
         this.postService.getPost(this.id).subscribe((post) => {
           this.enteredTitle = post.title;
           this.enteredContent = post.content;
+          this.isLoading = false;
         });
       } else {
         this.isCreate = true;
@@ -42,6 +45,7 @@ export class PostCreateComponent implements OnInit {
     if (postForm.invalid) {
       return;
     }
+    this.isLoading = true;
     if (this.isCreate) {
       // this.postService.addPost(this.enteredTitle, this.enteredContent);
       this.postService.addPost(postForm.value.title, postForm.value.content);
@@ -49,7 +53,6 @@ export class PostCreateComponent implements OnInit {
       this.postService.updatePost(this.id, postForm.value.title, postForm.value.content);
     }
     postForm.resetForm();
-    this.router.navigate(['/']);
   }
 
 }
