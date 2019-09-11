@@ -17,6 +17,7 @@ export class PostCreateComponent implements OnInit {
   private post: Post;
   isLoading = false;
   form: FormGroup;
+  imagePreview: string;
 
   @Output() addPost = new EventEmitter<Post>();
 
@@ -26,8 +27,9 @@ export class PostCreateComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      'title': new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
-      'content': new FormControl(null, { validators: [Validators.required] })
+      title: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
+      content: new FormControl(null, { validators: [Validators.required] }),
+      image: new FormControl(null, { validators: [Validators.required] })
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('id')) {
@@ -65,6 +67,20 @@ export class PostCreateComponent implements OnInit {
       this.postService.updatePost(this.id, this.form.value.title, this.form.value.content);
     }
     this.form.reset();
+  }
+
+  imagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({
+      image: file
+    });
+    this.form.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+      console.log(this.imagePreview);
+    }
+    reader.readAsDataURL(file);
   }
 
 }
