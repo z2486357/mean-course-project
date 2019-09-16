@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 // npm install --save body-parser
 // npm install --save mongoose
 // npm install --save nodemon
+// npm install --save multer
 // add "start:server" : "nodemon server.js" in package.json
 const postsRoutes = require('./routes/posts');
 
