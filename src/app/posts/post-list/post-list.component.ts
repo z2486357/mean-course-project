@@ -14,6 +14,7 @@ export class PostListComponent implements OnInit {
   //   {title: "2 Post", content: "This is the 2 post's content"},
   //   {title: "3 Post", content: "This is the 3 post's content"},
   // ];
+
   isLoading = false;
   get posts() { return this.postService.getPosts(); }
   constructor(private postService: PostsService,
