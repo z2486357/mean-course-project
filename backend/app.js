@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -24,6 +25,7 @@ mongoose.connect("mongodb+srv://mongouser:leXhc3AF3adBpEtJ@cluster0-iihgu.mongod
 
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended:false})); // no use right now
+app.use("/images",express.static(path.join("backend/images")));
 
 // enable the communication between localhost:4200 and localhost:3000
 app.use((req, res, next) => {
