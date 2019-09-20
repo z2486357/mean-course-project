@@ -42,13 +42,15 @@ export class PostCreateComponent implements OnInit {
             id: post._id,
             title: post.title,
             content: post.content,
-            imagePath: null
+            imagePath: post.imagePath
           }
           this.isLoading = false;
           this.form.setValue({
-            'title': this.post.title,
-            'content': this.post.content
+            title: this.post.title,
+            content: this.post.content,
+            image:this.post.imagePath
           })
+          this.imagePreview=post.imagePath;
         });
       } else {
         this.isCreate = true;
@@ -67,7 +69,7 @@ export class PostCreateComponent implements OnInit {
       this.postService.addPost(this.form.value.title, this.form.value.content, this.form.value.image);
       console.log(this.form.value.image)
     } else {
-      this.postService.updatePost(this.id, this.form.value.title, this.form.value.content);
+      this.postService.updatePost(this.id, this.form.value.title, this.form.value.content,this.form.value.image);
     }
     this.form.reset();
   }
@@ -81,7 +83,7 @@ export class PostCreateComponent implements OnInit {
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result as string;
-      console.log(this.imagePreview);
+      //console.log(this.imagePreview);
     }
     reader.readAsDataURL(file);
   }
