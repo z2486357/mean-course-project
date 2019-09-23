@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class PostListComponent implements OnInit {
 
   isLoading = false;
+  
   get posts() { return this.postService.getPosts(); }
   constructor(private postService: PostsService,
     private router: Router,
