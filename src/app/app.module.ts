@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   MatInputModule, MatCardModule, MatButtonModule,
-  MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule
+  MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule,
+  MatPaginatorModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -31,6 +32,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,
+    MatPaginatorModule,
     HttpClientModule,
     MatProgressSpinnerModule
   ],
