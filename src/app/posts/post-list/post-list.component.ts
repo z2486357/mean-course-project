@@ -10,7 +10,6 @@ import { PageEvent } from '@angular/material';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit {
-
   postsPerPage=2;
   currentPage=1
   pageSizeOptions=[1,2,5,10];
