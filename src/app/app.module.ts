@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import {
   MatInputModule, MatCardModule, MatButtonModule,
   MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule,
@@ -30,6 +30,7 @@ import { SignupComponent } from './auth/signup/signup.component';
     AppRoutingModule,
     BrowserModule,
     ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatCardModule,
