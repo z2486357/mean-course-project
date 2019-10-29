@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 //npm install --save mongoose-unique-validator
+// for validator of unique
 
 
 const userSchema = mongoose.Schema({
