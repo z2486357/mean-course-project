@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 // npm install --save multer
 // add "start:server" : "nodemon server.js" in package.json
 const postsRoutes = require('./routes/posts');
+const userRoutes = require('./routes/user');
 
 const app = express();
 
@@ -36,5 +37,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/posts",postsRoutes);
+app.use("/api/user",userRoutes);
 
 module.exports = app;
