@@ -18,9 +18,9 @@ router.post("/signup", (req, res, next) => {
         message: 'User Created!',
         result: result
       })
-    }).catch(err=>{
+    }).catch(err => {
       res.status(500).json({
-        error:err
+        error: err
       })
     })
   });
@@ -29,32 +29,32 @@ router.post("/signup", (req, res, next) => {
 
 router.post("/login", (req, res, next) => {
   let fetchedUser;
-  User.findOne({ email:req.body.email }).then(
-    user=>{
-      if(!user){
+  User.findOne({ email: req.body.email }).then(
+    user => {
+      if (!user) {
         return res.status(401).json({
-          message:'Auth Failed!'
+          message: 'Auth Failed!'
         })
       }
-      fetchedUser=user;
-      return bcrypt.compare(req.body.password,user.password)
+      fetchedUser = user;
+      return bcrypt.compare(req.body.password, user.password)
     }
-  ).then(result=>{
-    if(!result){
+  ).then(result => {
+    if (!result) {
       return res.status(401).json({
-        message:'Auth Failed!'
+        message: 'Auth Failed!'
       })
     }
-    const token = jwt.sign({email:fetchedUser.email,userId:fetchedUser._id},
-      'secret_this_should_be_longer_random_string',{expiresIn:"1h"});
+    const token = jwt.sign({ email: fetchedUser.email, userId: fetchedUser._id },
+      'secret_this_should_be_longer_random_string', { expiresIn: "1h" });
 
     return res.status(200).json({
-      token:token
+      token: token
     })
 
-  }).catch(err=>{
+  }).catch(err => {
     return res.status(401).json({
-      message:'Auth Failed!'
+      message: 'Auth Failed!'
     })
   })
 });
