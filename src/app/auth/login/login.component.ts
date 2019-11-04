@@ -10,16 +10,16 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
   isLoading = false;
 
-  constructor(private anthService:AuthService) { }
+  constructor(private anthService: AuthService) { }
 
   ngOnInit() {
   }
 
   login(form: NgForm) {
-    if(form.invalid){
+    if (form.invalid) {
       return;
     }
-    this.anthService.login(form.value.email,form.value.password);
+    this.anthService.login(form.value.email, form.value.password);
     //console.log(form);
   }
 }
