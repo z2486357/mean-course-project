@@ -11,7 +11,7 @@
     </div>
     <!-- <p>{{post.imagePath}}</p> -->
     <p>{{post.content}}</p>
-    <mat-action-row>
+    <mat-action-row *ngIf="isAuth">
       <button mat-button color="primary" (click)="edit(post.id)">Edit</button>
       <button mat-button color="warn" (click)="delete(post.id)">Delete</button>
     </mat-action-row>

@@ -1,15 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Post } from '../post.model';
 import { PostsService } from '../posts.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PageEvent } from '@angular/material';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.css']
 })
-export class PostListComponent implements OnInit {
+export class PostListComponent implements OnInit, OnDestroy {
+  get isAuth(){return this.authService.getAuthStatus();}
   postsPerPage=2;
   currentPage=1
   pageSizeOptions=[1,2,5,10];
@@ -18,12 +21,16 @@ export class PostListComponent implements OnInit {
   get posts() { return this.postService.getPosts(); }
   constructor(private postService: PostsService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private authService:AuthService) { }
 
   ngOnInit() {
     this.isLoading = true;
     this.postService.getPostsFromServer(this.postsPerPage,this.currentPage);
     this.isLoading = false;
+  }
+
+  ngOnDestroy(){
   }
 
   delete(id: string) {
