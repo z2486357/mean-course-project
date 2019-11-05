@@ -2,14 +2,17 @@
   <span><a routerLink="">My Message</a></span>
   <span class="space"></span>
   <ul>
-    <li>
+    <li *ngIf="isAuth">
       <a mat-button routerLink="/create" routerLinkActive="mat-primary" >New Post</a>
     </li>
-    <li>
+    <li *ngIf="!isAuth">
         <a mat-button routerLink="/login" routerLinkActive="mat-primary" >Login</a>
       </li>
-      <li>
+      <li *ngIf="!isAuth">
         <a mat-button routerLink="/signup" routerLinkActive="mat-primary" >Sign Up</a>
+      </li>
+      <li *ngIf="isAuth">
+        <button mat-button>Log Out</button>
       </li>
   </ul>
 
