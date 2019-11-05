@@ -12,7 +12,7 @@
         <a mat-button routerLink="/signup" routerLinkActive="mat-primary" >Sign Up</a>
       </li>
       <li *ngIf="isAuth">
-        <button mat-button>Log Out</button>
+        <button mat-button (click)="logout()">Logout</button>
       </li>
   </ul>
 

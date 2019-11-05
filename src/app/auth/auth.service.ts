@@ -32,8 +32,15 @@ export class AuthService {
       response =>{
         const token=response.token;
         this.token=token;
-        this.isAuth=true;
+        if(token){
+          this.isAuth=true;
+        }
       }
     )
+  }
+
+  logout(){
+    this.isAuth=false;
+    this.token=null;
   }
 }
