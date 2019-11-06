@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private token:string;
   private isAuth=false;
+  private tokenTimer: any;
 
   constructor(private http: HttpClient,
     private router:Router) { }
@@ -30,11 +31,15 @@ export class AuthService {
 
   login(email:string,password:string){
     const authData: AuthData = { email: email, password: password };
-    this.http.post<{token:string}>("http://localhost:3000/api/user/login", authData).subscribe(
+    this.http.post<{token:string,expiresIn:number}>("http://localhost:3000/api/user/login", authData).subscribe(
       response =>{
         const token=response.token;
         this.token=token;
         if(token){
+          const expiresIn=response.expiresIn;
+          this.tokenTimer=setTimeout(()=>{
+            this.logout();
+          },expiresIn*1000); //minisecond
           this.isAuth=true;
           this.router.navigate(['/'])
         }
@@ -46,5 +51,6 @@ export class AuthService {
     this.isAuth=false;
     this.token=null;
     this.router.navigate(['/'])
+    clearTimeout(this.tokenTimer);
   }
 }
