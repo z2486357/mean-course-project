@@ -19,6 +19,8 @@ export class PostListComponent implements OnInit, OnDestroy {
   isLoading = false;
   get totalPosts() {return this.postService.maxPosts;}
   get posts() { return this.postService.getPosts(); }
+  get userId(){return this.authService.getUserId();}
+
   constructor(private postService: PostsService,
     private router: Router,
     private route: ActivatedRoute,
