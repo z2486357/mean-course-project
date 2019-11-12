@@ -1,4 +1,14 @@
-# MeanCourse
+# Post Board
+
+This is a post board that you can post some message and image.
+
+You have to sign up first. Then you can post a post and edit/delete the post you post.
+
+If you are not a authorized user, you can still see the post but you can not add/edit/delete any post.
+
+The project use Angular for front-end, node.js for backend and mongoDB for database.
+
+The project is almost done but not finish yet. There is still some functions that are not implement yet.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
