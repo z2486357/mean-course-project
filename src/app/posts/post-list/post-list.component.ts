@@ -12,32 +12,32 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit, OnDestroy {
-  get isAuth(){return this.authService.getAuthStatus();}
-  postsPerPage=2;
-  currentPage=1
-  pageSizeOptions=[1,2,5,10];
+  get isAuth() { return this.authService.getAuthStatus(); }
+  postsPerPage = 2;
+  currentPage = 1
+  pageSizeOptions = [1, 2, 5, 10];
   isLoading = false;
-  get totalPosts() {return this.postService.maxPosts;}
+  get totalPosts() { return this.postService.maxPosts; }
   get posts() { return this.postService.getPosts(); }
-  get userId(){return this.authService.getUserId();}
+  get userId() { return this.authService.getUserId(); }
 
   constructor(private postService: PostsService,
     private router: Router,
     private route: ActivatedRoute,
-    private authService:AuthService) { }
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.isLoading = true;
-    this.postService.getPostsFromServer(this.postsPerPage,this.currentPage);
+    this.postService.getPostsFromServer(this.postsPerPage, this.currentPage);
     this.isLoading = false;
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
   }
 
   delete(id: string) {
-    this.postService.deletePost(id).subscribe(()=>{
-      this.postService.getPostsFromServer(this.postsPerPage,this.currentPage);
+    this.postService.deletePost(id).subscribe(() => {
+      this.postService.getPostsFromServer(this.postsPerPage, this.currentPage);
     });
   }
 
@@ -45,12 +45,12 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.router.navigate(['edit/' + id]);
   }
 
-  changePage(pageData:PageEvent){
+  changePage(pageData: PageEvent) {
     //console.log(pageData)
     this.isLoading = true;
-    this.currentPage=pageData.pageIndex+1;
-    this.postsPerPage=pageData.pageSize;
-    this.postService.getPostsFromServer(this.postsPerPage,this.currentPage);
+    this.currentPage = pageData.pageIndex + 1;
+    this.postsPerPage = pageData.pageSize;
+    this.postService.getPostsFromServer(this.postsPerPage, this.currentPage);
     this.isLoading = false;
   }
 }
