@@ -52,7 +52,6 @@ export class AuthService {
           const now = new Date();
           const expireTime = new Date(now.getTime() + expiresIn * 1000);
           this.userId = response.userId;
-          //console.log(expireTime)
           this.saveAuthData(token, expireTime, this.userId);
           this.router.navigate(['/'])
         }
