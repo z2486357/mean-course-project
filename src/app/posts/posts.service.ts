@@ -32,7 +32,6 @@ export class PostsService {
         }),maxPosts:postData.maxPosts};
       }))
       .subscribe((transformPostData) => {
-        //console.log(transformPostData)
         this.posts = transformPostData.posts;
         this.maxPosts=transformPostData.maxPosts;
       }
