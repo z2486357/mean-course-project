@@ -8,12 +8,12 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  get isLoading(){return this.authService.isLoading;}
+  get isLoading() { return this.authService.isLoading; }
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.isLoading=false;
+    this.authService.isLoading = false;
   }
 
   login(form: NgForm) {
