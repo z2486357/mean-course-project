@@ -49,9 +49,9 @@ router.post("", checkAuth, multer({ storage: storage }).single("image"), (req, r
         }
       });
     }
-  ).catch(error=>{
+  ).catch(error => {
     res.status(500).json({
-      message:"Created a post failed!"
+      message: "Created a post failed!"
     })
   });
 
@@ -76,9 +76,9 @@ router.get("", (req, res, next) => {
       posts: fetechedPosts,
       maxPosts: count,
     });
-  }).catch(error=>{
+  }).catch(error => {
     res.status(500).json({
-      message:"Fetching post failed!"
+      message: "Fetching post failed!"
     })
   });
 
@@ -105,9 +105,9 @@ router.put("/:id", checkAuth, multer({ storage: storage }).single("image"), (req
     } else {
       res.status(401).json({ message: "Not Authorized!" });
     }
-  }).catch(error=>{
+  }).catch(error => {
     res.status(500).json({
-      message:"Couldn't update post!"
+      message: "Couldn't update post!"
     })
   })
 });
@@ -119,25 +119,25 @@ router.get("/:id", (req, res, next) => {
     } else {
       res.status(400).json({ message: "Post not found!" });
     }
-  }).catch(error=>{
+  }).catch(error => {
     res.status(500).json({
-      message:"Fetching post failed!"
+      message: "Fetching post failed!"
     })
   })
 })
 
 router.delete("/:id", checkAuth, (req, res, next) => {
   //console.log(req.params.id);
-  Post.deleteOne({ _id: req.params.id, creator:req.userData.userId }).then((result) => {
+  Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then((result) => {
     console.log(result);
     if (result.n > 0) {
       res.status(200).json({ message: "Post deleted!" });
     } else {
       res.status(401).json({ message: "Not Authorized!" });
     }
-  }).catch(error=>{
+  }).catch(error => {
     res.status(500).json({
-      message:"Delete post failed!"
+      message: "Delete post failed!"
     })
   })
 });
