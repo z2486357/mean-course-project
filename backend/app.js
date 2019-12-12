@@ -15,7 +15,7 @@ const app = express();
 
 //mongodb user and password
 //mongouser:password
-mongoose.connect("mongodb+srv://mongouser:leXhc3AF3adBpEtJ@cluster0-iihgu.mongodb.net/node-angular?retryWrites=true&w=majority", { useNewUrlParser: true })
+mongoose.connect("mongodb+srv://mongouser:"+process.env.MONGO_ATLAS_PW+"@cluster0-iihgu.mongodb.net/node-angular?retryWrites=true&w=majority", { useNewUrlParser: true })
   .then(() => {
     console.log("connect to database!");
   })
