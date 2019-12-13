@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 // npm install --save bcrypt
 // for changing password to unreadable string
 const jwt = require('jsonwebtoken');
