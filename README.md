@@ -8,7 +8,7 @@ If you are not a authorized user, you can still see the post but you can not add
 
 The project use Angular for front-end, node.js for backend and mongoDB for database.
 
-The project is almost done but not finish yet. There is still some functions that are not implement yet.
+It is a deployed application. Please give it a try at http://mean-project-angular-node.s3-website.us-east-2.amazonaws.com/
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
