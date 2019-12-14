@@ -26,7 +26,7 @@ mongoose.connect("mongodb+srv://mongouser:"+process.env.MONGO_ATLAS_PW+"@cluster
 
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended:false})); // no use right now
-app.use("/images",express.static(path.join("backend/images")));
+app.use("/images",express.static(path.join("images")));
 
 // enable the communication between localhost:4200 and localhost:3000
 app.use((req, res, next) => {
