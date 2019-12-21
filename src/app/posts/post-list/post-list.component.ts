@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class PostListComponent implements OnInit, OnDestroy {
   get isAuth() { return this.authService.getAuthStatus(); }
-  postsPerPage = 2;
+  postsPerPage = 10;
   currentPage = 1
   pageSizeOptions = [1, 2, 5, 10];
   isLoading = false;
