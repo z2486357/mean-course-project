@@ -8,7 +8,7 @@ import { NgModule } from '@angular/core';
 
 @NgModule({
   // imports:[] will be done automatically
-  exports:[
+  exports: [
     MatInputModule,
     MatCardModule,
     MatButtonModule,
