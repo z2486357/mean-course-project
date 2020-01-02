@@ -1,6 +1,6 @@
 const Post = require('../models/post');
 
-exports.createPost= (req, res, next) => {
+exports.createPost = (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
   const post = new Post({
     title: req.body.title,
@@ -30,7 +30,7 @@ exports.createPost= (req, res, next) => {
 
 }
 
-exports.updatePost=(req, res, next) => {
+exports.updatePost = (req, res, next) => {
   let imagePath = req.body.imagePath;
   //console.log(imagePath)
   if (req.file) {
@@ -58,7 +58,7 @@ exports.updatePost=(req, res, next) => {
   })
 }
 
-exports.getPosts=(req, res, next) => {
+exports.getPosts = (req, res, next) => {
   //console.log(req.query);
   const pageSize = +req.query.pageSize;
   const currentPage = +req.query.currentPage;
@@ -85,7 +85,7 @@ exports.getPosts=(req, res, next) => {
 
 }
 
-exports.getPostById=(req, res, next) => {
+exports.getPostById = (req, res, next) => {
   Post.findById(req.params.id).then((post) => {
     if (post) {
       res.status(200).json(post);
@@ -99,7 +99,7 @@ exports.getPostById=(req, res, next) => {
   })
 }
 
-exports.deletePost=(req, res, next) => {
+exports.deletePost = (req, res, next) => {
   //console.log(req.params.id);
   Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then((result) => {
     console.log(result);
