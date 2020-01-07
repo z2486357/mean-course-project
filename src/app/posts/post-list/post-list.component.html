@@ -9,7 +9,6 @@
     <div class="post-image">
       <img [src]="post.imagePath" [alt]="post.title" />
     </div>
-    <!-- <p>{{post.imagePath}}</p> -->
     <p>{{ post.content }}</p>
     <mat-action-row *ngIf="isAuth && userId === post.creator">
       <button mat-button color="primary" (click)="edit(post.id)">Edit</button>
