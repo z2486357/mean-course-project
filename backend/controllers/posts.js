@@ -59,7 +59,6 @@ exports.updatePost = (req, res, next) => {
 }
 
 exports.getPosts = (req, res, next) => {
-  //console.log(req.query);
   const pageSize = +req.query.pageSize;
   const currentPage = +req.query.currentPage;
   const postQuery = Post.find();
